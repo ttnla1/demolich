@@ -358,8 +358,20 @@ class="absolute left-6 text-white text-4xl">❮</button>
 class="max-h-[85%] max-w-[85%] rounded-lg shadow-xl">
 
 <button id="next-image-btn"
-class="absolute right-6 text-white text-4xl">❯</button>
-    </div><!-- SEASONS PAGE -->
+class="absolute right-6 text-white text-4xl">❯</button></div>
+
+    <div class="text-center mb-10">
+<h2 class="font-display text-4xl font-bold mb-4" style="color:#3d5a36;">Video</h2>
+<p class="text-lg max-w-2xl mx-auto" style="color:#6b8f5e;">Video giới thiệu sản phẩm của dự án lịch Marcovaldo</p>
+<div class="w-24 h-1 mx-auto mt-4 rounded-full" style="background:linear-gradient(90deg,#6b8f5e,#a8c99b);"></div>
+</div>
+    <h2 style="text-align:center;margin-top:40px;"> Video giới thiệu sản phẩm </h2>
+<div style="text-align:center;margin-top:20px;">
+<video id="lichVideo" width="800" controls style="border-radius:12px;">
+  <source src="lichvideo_VhJziPnt.mp4" type="video/mp4">
+</video>
+</div>
+    <!-- SEASONS PAGE -->
     <div id="page-seasons" class="page">
      <div class="text-center mb-10">
       <h2 class="font-display text-4xl font-bold mb-4" style="color: #3d5a36;">Bốn Mùa Trong Tác Phẩm</h2>
@@ -1076,6 +1088,19 @@ modal.classList.add("opacity-0","pointer-events-none")
 
 }
 
+</script>
+ <script>
+const video = document.getElementById("lichVideo");
+
+video.addEventListener("click", function () {
+
+  if (video.requestFullscreen) {
+    video.requestFullscreen();
+  }
+
+  video.play();
+
+});
 </script>
  </body>
 </html>
