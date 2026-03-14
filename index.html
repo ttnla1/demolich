@@ -1,0 +1,1081 @@
+<!doctype html>
+<html lang="vi" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marcovaldo - Các Mùa Trong Thành Phố</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&amp;family=Lora:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body { font-family: 'Source Serif 4', 'Lora', Georgia, serif; }
+    .font-display { font-family: 'Playfair Display', Georgia, serif; }
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: currentColor;
+      transition: width 0.3s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+    .page { display: none; animation: fadeIn 0.5s ease; }
+    .page.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+    .season-card { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    .season-card:hover { transform: scale(1.02); }
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #86a17a, transparent);
+    }
+    .drop-cap::first-letter {
+      float: left;
+      font-size: 4rem;
+      line-height: 0.8;
+      padding-right: 0.5rem;
+      font-family: 'Playfair Display', serif;
+      color: #4a6741;
+    }
+    .title-link {
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .title-link:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+      text-decoration-color: #86a17a;
+      text-underline-offset: 4px;
+    }
+   .page{
+  display: none;
+}
+
+.page.active{
+  display: block;
+}
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="h-full w-full overflow-auto" style="background: linear-gradient(135deg, #f8faf6 0%, #eef4eb 50%, #f5f9f3 100%);"><!-- Header -->
+   <header class="sticky top-0 z-50" style="background: rgba(248, 250, 246, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #d4e4cf;">
+    <div class="max-w-6xl mx-auto px-4"><!-- Back Button -->
+     <div class="py-2"><a href="https://ttnla1.github.io/trangchuvan/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all" style="background: #e8f0e5; color: #3d5a36;" onmouseover="this.style.background='#d4e4cf'" onmouseout="this.style.background='#e8f0e5'"> ← Quay về trang chính </a>
+     </div>
+     <div class="flex items-center justify-between py-3"><a href="https://ttnla1.github.io/trangchuvan/" target="_blank" rel="noopener noreferrer" class="title-link"> <h1 id="site-title" class="font-display text-2xl md:text-3xl font-bold" style="color: #3d5a36;">🍃 Marcovaldo</h1></a>
+      <p id="hero-subtitle" class="hidden md:block text-sm italic" style="color: #6b8f5e;">Các mùa trong thành phố</p>
+     </div><!-- Navigation -->
+     <nav class="flex flex-wrap gap-1 md:gap-4 pb-3 text-sm"><button class="nav-link nav-btn px-2 py-1 font-medium transition-colors" style="color: #4a6741;" data-page="home">Trang chủ</button> <span style="color: #b8d4ae;">|</span> <button class="nav-link nav-btn px-2 py-1 font-medium transition-colors" style="color: #4a6741;" data-page="members">Thành viên</button> <span style="color: #b8d4ae;">|</span> <button class="nav-link nav-btn px-2 py-1 font-medium transition-colors" style="color: #4a6741;" data-page="author">Tác giả &amp; Tác phẩm</button> <span style="color: #b8d4ae;">|</span> <button class="nav-link nav-btn px-2 py-1 font-medium transition-colors" style="color: #4a6741;" data-page="gallery">Hình ảnh</button> <span style="color: #b8d4ae;">|</span><button class="nav-link nav-btn px-2 py-1 font-medium transition-colors" style="color: #4a6741;" data-page="seasons">Bốn mùa</button> <span style="color: #b8d4ae;">|</span> <button class="nav-link nav-btn px-2 py-1 font-medium transition-colors" style="color: #4a6741;" data-page="calendar">Ý tưởng lịch</button> <span style="color: #b8d4ae;">|</span> <button class="nav-link nav-btn px-2 py-1 font-medium transition-colors" style="color: #4a6741;" data-page="design">Thiết kế</button> <span style="color: #b8d4ae;">|</span> <button class="nav-link nav-btn px-2 py-1 font-medium transition-colors" style="color: #4a6741;" data-page="values">Giá trị cốt lõi</button> <span style="color: #b8d4ae;">|</span> <button class="nav-link nav-btn px-2 py-1 font-medium transition-colors" style="color: #4a6741;" data-page="script">Kịch bản</button>
+     </nav>
+    </div>
+   </header>
+   <main class="max-w-6xl mx-auto px-4 py-8"><!-- HOME PAGE -->
+    <div id="page-home" class="page active">
+     <div class="grid md:grid-cols-3 gap-8"><!-- Main Feature -->
+      <div class="md:col-span-2">
+       <div class="rounded-2xl overflow-hidden card-hover" style="background: linear-gradient(145deg, #fff 0%, #f0f7ed 100%); box-shadow: 0 10px 40px rgba(74, 103, 65, 0.1);">
+        <div class="p-8" style="background: linear-gradient(135deg, #6b8f5e 0%, #4a6741 100%);"><span class="inline-block px-3 py-1 rounded-full text-xs font-medium mb-4" style="background: rgba(255,255,255,0.2); color: #fff;">DỰ ÁN NỔI BẬT</span>
+         <h2 class="font-display text-3xl md:text-4xl font-bold text-white mb-4">Lịch Nghệ Thuật Marcovaldo 2025</h2>
+         <p class="text-lg" style="color: rgba(255,255,255,0.9);">Hành trình đưa văn học vào đời sống qua từng trang lịch</p>
+        </div>
+        <div class="p-8">
+         <p class="drop-cap text-lg leading-relaxed" style="color: #4a5568;">Dự án "Lịch Marcovaldo - Các mùa trong thành phố" là một sáng kiến độc đáo nhằm kết hợp văn học kinh điển với nghệ thuật thị giác, tạo nên một sản phẩm lịch mang tính nghệ thuật cao, đồng thời truyền tải những thông điệp sâu sắc về mối quan hệ giữa con người và thiên nhiên trong môi trường đô thị hiện đại.</p>
+         <div class="divider my-6"></div>
+         <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full flex items-center justify-center text-2xl" style="background: #e8f0e5;">
+           🌿
+          </div>
+          <div>
+           <p class="font-medium" style="color: #3d5a36;">Italo Calvino</p>
+           <p class="text-sm" style="color: #6b8f5e;">Tác giả nguyên tác</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Sidebar -->
+      <div class="space-y-6">
+       <div class="rounded-xl p-6 card-hover" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.08);">
+        <h3 class="font-display text-lg font-semibold mb-4 pb-2" style="color: #3d5a36; border-bottom: 2px solid #d4e4cf;">📰 Tin nổi bật</h3>
+        <ul class="space-y-4">
+         <li class="flex gap-3"><span style="color: #6b8f5e;">❖</span> <p class="text-sm" style="color: #4a5568;">20 câu chuyện theo 4 mùa được chọn lọc</p></li>
+         <li class="flex gap-3"><span style="color: #6b8f5e;">❖</span> <p class="text-sm" style="color: #4a5568;">Thiết kế vintage kết hợp hiện đại</p></li>
+         <li class="flex gap-3"><span style="color: #6b8f5e;">❖</span> <p class="text-sm" style="color: #4a5568;">Minh họa độc quyền cho mỗi trang</p></li>
+        </ul>
+       </div>
+       <div class="rounded-xl p-6" style="background: linear-gradient(145deg, #e8f0e5 0%, #d4e4cf 100%);">
+        <h3 class="font-display text-lg font-semibold mb-3" style="color: #3d5a36;">🎯 Mục tiêu dự án</h3>
+        <p class="text-sm leading-relaxed" style="color: #4a5568;">Lan tỏa tình yêu văn học và khơi gợi ý thức bảo vệ môi trường qua góc nhìn đầy chất thơ của Marcovaldo.</p>
+       </div>
+       <div class="rounded-xl overflow-hidden" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.08);">
+        <div class="p-4" style="background: #4a6741;">
+         <p class="text-white text-sm font-medium">📅 Tiến độ dự án</p>
+        </div>
+        <div class="p-4">
+         <div class="space-y-3">
+          <div class="flex justify-between text-sm"><span style="color: #6b8f5e;">Nghiên cứu</span> <span style="color: #3d5a36;">✓ Hoàn thành</span>
+          </div>
+          <div class="flex justify-between text-sm"><span style="color: #6b8f5e;">Thiết kế</span> <span style="color: #3d5a36;">✓ Hoàn thành</span>
+          </div>
+          <div class="flex justify-between text-sm"><span style="color: #6b8f5e;">Hoàn thiện</span> <span style="color: #f59e0b;">⟳ Đang tiến hành</span>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- MEMBERS PAGE -->
+    <div id="page-members" class="page">
+     <div class="text-center mb-10">
+      <h2 class="font-display text-4xl font-bold mb-4" style="color: #3d5a36;">Đội Ngũ Thực Hiện</h2>
+      <p class="text-lg" style="color: #6b8f5e;">From 11A1 with love</p>
+      <div class="w-24 h-1 mx-auto mt-4 rounded-full" style="background: linear-gradient(90deg, #6b8f5e, #a8c99b);"></div>
+     </div>
+    <div class="grid md:grid-cols-3 gap-6">
+
+ <!-- ===== BIÊN TẬP VIÊN ===== -->
+ <div class="md:col-span-3 text-center mt-4">
+   <p class="text-lg font-semibold" style="color:#3d5a36;">BIÊN TẬP VIÊN</p>
+ </div>
+
+ <!-- Gia Bảo -->
+ <div class="rounded-xl p-6 text-center card-hover" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.1);">
+  <div class="w-16 h-16 mx-auto mb-2 overflow-hidden rounded-full">
+   <img src="giabao.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+  </div>
+  <h3 class="font-display text-xl font-semibold" style="color: #3d5a36;">Nguyễn Huỳnh Gia Bảo</h3>
+  <p class="text-sm font-medium mt-1" style="color: #6b8f5e;">CONTENT RESEARCHER</p>
+  <p class="text-sm mt-3" style="color: #718096;">Tìm kiếm thông tin cho quyển lịch</p>
+ </div>
+
+ <!-- Hoàng Minh -->
+ <div class="rounded-xl p-6 text-center card-hover" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.1);">
+  <div class="w-16 h-16 mx-auto mb-2 overflow-hidden rounded-full">
+   <img src="hoangminh.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+  </div>
+  <h3 class="font-display text-xl font-semibold" style="color: #3d5a36;">Nguyễn Khắc Hoàng Minh</h3>
+  <p class="text-sm font-medium mt-1" style="color: #6b8f5e;">CONTENT CURATOR</p>
+  <p class="text-sm mt-3" style="color: #718096;">Tổng hợp các nội dung đã tìm kiếm</p>
+ </div>
+
+ <!-- Minh Khang -->
+ <div class="rounded-xl p-6 text-center card-hover" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.1);">
+  <div class="w-16 h-16 mx-auto mb-2 overflow-hidden rounded-full">
+   <img src="minhkhang.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+  </div>
+  <h3 class="font-display text-xl font-semibold" style="color: #3d5a36;">Nguyễn Minh Khang</h3>
+  <p class="text-sm font-medium mt-1" style="color: #6b8f5e;">CONTENT RESEARCHER</p>
+  <p class="text-sm mt-3" style="color: #718096;">Tìm kiếm thông tin cho quyển lịch</p>
+ </div>
+
+ <!-- Minh Quân -->
+ <div class="rounded-xl p-6 text-center card-hover" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.1);">
+  <div class="w-16 h-16 mx-auto mb-2 overflow-hidden rounded-full">
+   <img src="minhquan.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+  </div>
+  <h3 class="font-display text-xl font-semibold" style="color: #3d5a36;">Nguyễn Minh Quân</h3>
+  <p class="text-sm font-medium mt-1" style="color: #6b8f5e;">SCRIPTWRITER</p>
+  <p class="text-sm mt-3" style="color: #718096;">Viết kịch bản</p>
+ </div>
+
+
+ <!-- ===== BAN THIẾT KẾ ===== -->
+ <div class="md:col-span-3 text-center mt-10">
+   <p class="text-lg font-semibold" style="color:#3d5a36;">BAN THIẾT KẾ</p>
+ </div>
+
+ <!-- Thảo Yến -->
+ <div class="rounded-xl p-6 text-center card-hover" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.1);">
+  <div class="w-16 h-16 mx-auto mb-2 overflow-hidden rounded-full">
+   <img src="thaoyen.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+  </div>
+  <h3 class="font-display text-xl font-semibold" style="color: #3d5a36;">Nguyễn Thị Thảo Yến</h3>
+  <p class="text-sm font-medium mt-1" style="color: #6b8f5e;">LEADER</p>
+  <p class="text-sm mt-3" style="color: #718096;">Điều phối dự án</p>
+ </div>
+
+ <!-- Như Thảo -->
+ <div class="rounded-xl p-6 text-center card-hover" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.1);">
+  <div class="w-16 h-16 mx-auto mb-2 overflow-hidden rounded-full">
+   <img src="nhuthao.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+  </div>
+  <h3 class="font-display text-xl font-semibold" style="color: #3d5a36;">Bùi Lê Như Thảo</h3>
+  <p class="text-sm font-medium mt-1" style="color: #6b8f5e;">DESIGNER</p>
+  <p class="text-sm mt-3" style="color: #718096;">Thiết kế lịch treo tường</p>
+ </div>
+
+ <!-- Ngọc Hân -->
+ <div class="rounded-xl p-6 text-center card-hover" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.1);">
+  <div class="w-16 h-16 mx-auto mb-2 overflow-hidden rounded-full">
+   <img src="ngochan.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+  </div>
+  <h3 class="font-display text-xl font-semibold" style="color: #3d5a36;">Phạm Ngọc Hân</h3>
+  <p class="text-sm font-medium mt-1" style="color: #6b8f5e;">DESIGNER</p>
+  <p class="text-sm mt-3" style="color: #718096;">Thiết kế sổ tay</p>
+ </div>
+
+ <!-- Gia An -->
+ <div class="rounded-xl p-6 text-center card-hover" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.1);">
+  <div class="w-16 h-16 mx-auto mb-2 overflow-hidden rounded-full">
+   <img src="giaan.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+  </div>
+  <h3 class="font-display text-xl font-semibold" style="color: #3d5a36;">Phù Lý Gia An</h3>
+  <p class="text-sm font-medium mt-1" style="color: #6b8f5e;">DESIGNER</p>
+  <p class="text-sm mt-3" style="color: #718096;">Thiết kế lịch để bàn</p>
+ </div>
+
+ <!-- Đăng Khôi -->
+ <div class="rounded-xl p-6 text-center card-hover" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.1);">
+  <div class="w-16 h-16 mx-auto mb-2 overflow-hidden rounded-full">
+   <img src="dangkhoi.jpg" class="w-full h-full object-cover hover:scale-110 transition duration-300"></div>
+  <h3 class="font-display text-xl font-semibold" style="color: #3d5a36;">Văn Bùi Đăng Khôi</h3>
+  <p class="text-sm font-medium mt-1" style="color: #6b8f5e;">DESIGNER</p>
+  <p class="text-sm mt-3" style="color: #718096;">Thiết kế lịch để bàn</p>
+ </div>
+     </div>
+     </div>
+    <!-- AUTHOR PAGE -->
+    <div id="page-author" class="page">
+      <div class="grid md:grid-cols-3 gap-8">
+      <div class="md:col-span-1">
+       <div class="sticky top-32 rounded-2xl overflow-hidden" style="background: #fff; box-shadow: 0 10px 40px rgba(74, 103, 65, 0.1);">
+        <div class="p-6 text-center" style="background: linear-gradient(135deg, #6b8f5e, #4a6741);">
+         <div class="w-32 h-32 mx-auto rounded-full overflow-hidden mb-4">
+          <img src="tacgialich.jpg" class="w-full h-full object-cover">
+        </div>
+         <h3 class="font-display text-2xl font-bold text-white">Italo Calvino</h3>
+         <p class="text-sm mt-2" style="color: rgba(255,255,255,0.8);">1923 - 1985</p>
+    </div>
+        <div class="p-6">
+         <div class="space-y-3 text-sm">
+          <div class="flex gap-2"><span style="color: #6b8f5e;">🇮🇹</span> <span style="color: #4a5568;">Nhà văn Ý</span> </div>
+          <div class="flex gap-2"><span style="color: #6b8f5e;">✍️</span> <span style="color: #4a5568;">Chủ nghĩa hiện thực huyền ảo</span> </div>
+          <div class="flex gap-2"><span style="color: #6b8f5e;">🏆</span> <span style="color: #4a5568;">Giải thưởng văn học quốc tế</span> </div>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="md:col-span-2 space-y-8">
+       <div class="rounded-xl p-8" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.08);">
+        <h2 class="font-display text-3xl font-bold mb-6" style="color: #3d5a36;">Về Tác Giả</h2>
+        <div class="prose max-w-none space-y-4" style="color: #4a5568;">
+         <p class="drop-cap leading-relaxed">Italo Calvino (1923-1985) là một trong những nhà văn Ý vĩ đại nhất thế kỷ 20. Ông được biết đến với phong cách viết độc đáo, kết hợp giữa chủ nghĩa hiện thực và yếu tố huyền ảo, tạo nên những tác phẩm vừa gần gũi vừa kỳ ảo.</p>
+         <p class="leading-relaxed">Calvino sinh ra tại Cuba nhưng lớn lên ở San Remo, Ý. Sau Thế chiến II, ông bắt đầu sự nghiệp văn chương và nhanh chóng trở thành một trong những tiếng nói quan trọng nhất của văn học Ý hiện đại.</p>
+        </div>
+       </div>
+       <div class="rounded-xl p-8" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.08);">
+        <h2 class="font-display text-3xl font-bold mb-6" style="color: #3d5a36;">Marcovaldo - Các Mùa Trong Thành Phố</h2>
+        <div class="grid md:grid-cols-2 gap-6 mb-6">
+         <div class="p-4 rounded-lg" style="background: #f8faf6;">
+          <p class="text-sm font-medium" style="color: #6b8f5e;">Năm xuất bản</p>
+          <p class="text-2xl font-display font-bold" style="color: #3d5a36;">1963</p>
+         </div>
+         <div class="p-4 rounded-lg" style="background: #f8faf6;">
+          <p class="text-sm font-medium" style="color: #6b8f5e;">Số truyện ngắn</p>
+          <p class="text-2xl font-display font-bold" style="color: #3d5a36;">20 truyện</p>
+         </div>
+        </div>
+        <p class="leading-relaxed" style="color: #4a5568;">Tác phẩm kể về Marcovaldo, một công nhân lao động nghèo sống ở thành phố công nghiệp. Qua 20 câu chuyện ngắn xoay quanh 4 mùa trong năm, Calvino khắc họa hành trình tìm kiếm thiên nhiên và vẻ đẹp giữa lòng đô thị xám xịt, mang đến góc nhìn vừa hài hước vừa xót xa về cuộc sống hiện đại.</p>
+       </div>
+       <div class="rounded-xl p-8" style="background: linear-gradient(145deg, #e8f0e5, #d4e4cf);">
+        <h3 class="font-display text-xl font-semibold mb-4" style="color: #3d5a36;">💬 Trích dẫn nổi bật</h3>
+        <blockquote class="text-lg italic leading-relaxed" style="color: #4a5568; border-left: 4px solid #6b8f5e; padding-left: 1.5rem;">
+         "Trong thành phố xi măng và nhựa đường, đôi mắt Marcovaldo vẫn tìm kiếm những chiếc lá vàng rơi, những đám mây bay qua mái nhà, những con nấm mọc lên sau cơn mưa..."
+        </blockquote>
+      </div>
+    </div>
+     </div>
+     </div>
+<!-- PAGE GALLERY -->
+<div id="page-gallery" class="page">
+
+<div class="text-center mb-10">
+<h2 class="font-display text-4xl font-bold mb-4" style="color:#3d5a36;">Thư Viện Hình Ảnh</h2>
+<p class="text-lg max-w-2xl mx-auto" style="color:#6b8f5e;">Minh họa và thiết kế cho dự án lịch Marcovaldo</p>
+<div class="w-24 h-1 mx-auto mt-4 rounded-full" style="background:linear-gradient(90deg,#6b8f5e,#a8c99b);"></div>
+</div>
+
+<div class="grid md:grid-cols-2 gap-6">
+
+<!-- KHUNG 1 -->
+<div class="gallery-item rounded-lg overflow-hidden cursor-pointer card-hover gallery-box"
+data-gallery="calendar"
+style="background:#fff; box-shadow:0 4px 20px rgba(74,103,65,0.1);">
+
+<div class="gallery-image"
+style="background:linear-gradient(145deg,#e8f0e5,#d4e4cf); width:100%; aspect-ratio:3/4; display:flex; align-items:center; justify-content:center; font-size:4rem;">
+🌸
+</div>
+
+<div class="p-4">
+<h3 class="font-medium" style="color:#3d5a36;">Bộ Lịch Marcovaldo</h3>
+<p class="text-sm mt-1" style="color:#6b8f5e;">12 trang lịch minh họa</p>
+</div>
+
+</div>
+
+<!-- KHUNG 2 -->
+<div class="gallery-item rounded-lg overflow-hidden cursor-pointer card-hover gallery-box"
+data-gallery="art"
+style="background:#fff; box-shadow:0 4px 20px rgba(74,103,65,0.1);">
+
+<div class="gallery-image"
+style="background:linear-gradient(145deg,#fff7ed,#fed7aa); width:100%; aspect-ratio:3/4; display:flex; align-items:center; justify-content:center; font-size:4rem;">
+🎨
+</div>
+
+<div class="p-4">
+<h3 class="font-medium" style="color:#3d5a36;">Tranh Minh Họa</h3>
+<p class="text-sm mt-1" style="color:#6b8f5e;">Concept Artwork</p>
+</div>
+
+</div>
+
+</div>
+</div>
+   <!-- IMAGE MODAL (THÊM NGAY SAU GALLERY PAGE) -->
+<div id="image-modal"
+class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 opacity-0 pointer-events-none transition z-50">
+
+<button id="close-modal-btn"
+class="absolute top-6 right-6 text-white text-3xl">✕</button>
+
+<button id="prev-image-btn"
+class="absolute left-6 text-white text-4xl">❮</button>
+
+<img id="modal-image"
+class="max-h-[85%] max-w-[85%] rounded-lg shadow-xl">
+
+<button id="next-image-btn"
+class="absolute right-6 text-white text-4xl">❯</button>
+    </div><!-- SEASONS PAGE -->
+    <div id="page-seasons" class="page">
+     <div class="text-center mb-10">
+      <h2 class="font-display text-4xl font-bold mb-4" style="color: #3d5a36;">Bốn Mùa Trong Tác Phẩm</h2>
+      <p class="text-lg max-w-2xl mx-auto" style="color: #6b8f5e;">Mỗi mùa mang một sắc thái riêng, phản ánh cuộc sống và tâm hồn của Marcovaldo</p>
+     </div>
+     <div class="grid md:grid-cols-2 gap-6"><!-- Spring -->
+      <div class="season-card rounded-2xl overflow-hidden" style="background: linear-gradient(145deg, #f0fdf4, #dcfce7); box-shadow: 0 10px 40px rgba(74, 163, 86, 0.15);">
+       <div class="p-6" style="background: linear-gradient(135deg, #4ade80, #22c55e);">
+        <div class="flex items-center gap-4"><span class="text-5xl">🌸</span>
+         <div>
+          <h3 class="font-display text-2xl font-bold text-white">Mùa Xuân</h3>
+          <p style="color: rgba(255,255,255,0.9);">Primavera</p>
+         </div>
+        </div>
+       </div>
+       <div class="p-6">
+        <p class="leading-relaxed mb-4" style="color: #166534;">Mùa của sự hồi sinh và hy vọng. Marcovaldo phát hiện những dấu hiệu đầu tiên của thiên nhiên thức giấc giữa thành phố - những chồi non, những con nấm, những luồng gió ấm áp mang theo hương hoa.</p>
+        <div class="flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(34, 197, 94, 0.2); color: #166534;">Nấm trong thành phố</span> <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(34, 197, 94, 0.2); color: #166534;">Ong độc</span> <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(34, 197, 94, 0.2); color: #166534;">Vịt rừng</span>
+        </div>
+       </div>
+      </div><!-- Summer -->
+      <div class="season-card rounded-2xl overflow-hidden" style="background: linear-gradient(145deg, #fefce8, #fef9c3); box-shadow: 0 10px 40px rgba(234, 179, 8, 0.15);">
+       <div class="p-6" style="background: linear-gradient(135deg, #facc15, #eab308);">
+        <div class="flex items-center gap-4"><span class="text-5xl">☀️</span>
+         <div>
+          <h3 class="font-display text-2xl font-bold text-white">Mùa Hè</h3>
+          <p style="color: rgba(255,255,255,0.9);">Estate</p>
+         </div>
+        </div>
+       </div>
+       <div class="p-6">
+        <p class="leading-relaxed mb-4" style="color: #854d0e;">Nắng chói chang và những cuộc phiêu lưu tìm kiếm sự mát mẻ. Marcovaldo trốn khỏi cái nóng ngột ngạt của thành phố, mơ về biển xanh, rừng thẳm và những đêm ngủ ngoài trời đầy sao.</p>
+        <div class="flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(234, 179, 8, 0.2); color: #854d0e;">Kỳ nghỉ trên ghế</span> <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(234, 179, 8, 0.2); color: #854d0e;">Mùa hè của thành phố</span> <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(234, 179, 8, 0.2); color: #854d0e;">Trăng và GNAC</span>
+        </div>
+       </div>
+      </div><!-- Autumn -->
+      <div class="season-card rounded-2xl overflow-hidden" style="background: linear-gradient(145deg, #fff7ed, #fed7aa); box-shadow: 0 10px 40px rgba(249, 115, 22, 0.15);">
+       <div class="p-6" style="background: linear-gradient(135deg, #fb923c, #f97316);">
+        <div class="flex items-center gap-4"><span class="text-5xl">🍂</span>
+         <div>
+          <h3 class="font-display text-2xl font-bold text-white">Mùa Thu</h3>
+          <p style="color: rgba(255,255,255,0.9);">Autunno</p>
+         </div>
+        </div>
+       </div>
+       <div class="p-6">
+        <p class="leading-relaxed mb-4" style="color: #9a3412;">Lá vàng rơi và những ngày se lạnh đầu tiên. Marcovaldo tìm thấy vẻ đẹp trong sự tàn phai, trong những chiếc lá khô xào xạc và ánh nắng chiều vàng óng ả phủ lên thành phố.</p>
+        <div class="flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(249, 115, 22, 0.2); color: #9a3412;">Rừng trên cao tốc</span> <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(249, 115, 22, 0.2); color: #9a3412;">Không khí tốt</span> <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(249, 115, 22, 0.2); color: #9a3412;">Thỏ độc</span>
+        </div>
+       </div>
+      </div><!-- Winter -->
+      <div class="season-card rounded-2xl overflow-hidden" style="background: linear-gradient(145deg, #f0f9ff, #e0f2fe); box-shadow: 0 10px 40px rgba(14, 165, 233, 0.15);">
+       <div class="p-6" style="background: linear-gradient(135deg, #38bdf8, #0ea5e9);">
+        <div class="flex items-center gap-4"><span class="text-5xl">❄️</span>
+         <div>
+          <h3 class="font-display text-2xl font-bold text-white">Mùa Đông</h3>
+          <p style="color: rgba(255,255,255,0.9);">Inverno</p>
+         </div>
+        </div>
+       </div>
+       <div class="p-6">
+        <p class="leading-relaxed mb-4" style="color: #0c4a6e;">Tuyết phủ trắng và cái lạnh cắt da. Marcovaldo tìm hơi ấm trong những khoảnh khắc bình dị nhất - củi lửa, ánh đèn Giáng sinh, và tình người ấm áp giữa mùa đông lạnh giá.</p>
+        <div class="flex flex-wrap gap-2"><span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(14, 165, 233, 0.2); color: #0c4a6e;">Tuyết dừng lại</span> <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(14, 165, 233, 0.2); color: #0c4a6e;">Ông già Noel</span> <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: rgba(14, 165, 233, 0.2); color: #0c4a6e;">Mùa đông thành phố</span>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- CALENDAR PAGE -->
+    <div id="page-calendar" class="page">
+     <div class="text-center mb-10">
+      <h2 class="font-display text-4xl font-bold mb-4" style="color: #3d5a36;">Ý Tưởng Lịch</h2>
+      <p class="text-lg max-w-2xl mx-auto" style="color: #6b8f5e;">Biến văn học thành nghệ thuật thị giác qua từng trang lịch</p>
+     </div>
+     <div class="space-y-8 mb-10">
+      <div class="rounded-xl p-8" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.1);">
+       <div class="flex items-center gap-4 mb-6">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center text-2xl" style="background: linear-gradient(135deg, #e8f0e5, #d4e4cf);">
+         💡
+        </div>
+        <h3 class="font-display text-2xl font-semibold" style="color: #3d5a36;">Mỗi Tháng, Một Câu Chuyện</h3>
+       </div>
+       <p class="leading-relaxed mb-4" style="color: #4a5568;">Mỗi tháng trong lịch đại diện cho một khoảnh khắc rất nhỏ của đời sống đô thị, nơi thiên nhiên vẫn âm thầm xuất hiện – giống như cách Marcovaldo luôn phát hiện ra những điều tưởng như vô hình.</p>
+      </div>
+      <div class="rounded-xl p-8" style="background: #fff; box-shadow: 0 4px 20px rgba(74, 103, 65, 0.1);">
+       <div class="flex items-center gap-4 mb-6">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center text-2xl" style="background: linear-gradient(135deg, #e8f0e5, #d4e4cf);">
+         📅
+        </div>
+        <h3 class="font-display text-2xl font-semibold" style="color: #3d5a36;">Năm 2027: Hành Trình 12 Tháng</h3>
+       </div>
+       <p class="leading-relaxed mb-4" style="color: #4a5568;">Dựa trên tác phẩm của Marcovaldo, cuốn lịch của chúng mình được thiết kế là lịch cho năm 2027, như một hành trình trọn vẹn đi qua mười hai tháng, bốn mùa trong thành phố.</p>
+      </div>
+      <div class="rounded-xl p-8" style="background: linear-gradient(145deg, #f0fdf4, #e8f5e9); border-left: 4px solid #4a6741;">
+       <div class="flex items-center gap-4 mb-6">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center text-2xl" style="background: linear-gradient(135deg, #4a6741, #3d5a36); color: white;">
+         ✨
+        </div>
+        <h3 class="font-display text-2xl font-semibold" style="color: #3d5a36;">Sống Chậm Lại</h3>
+       </div>
+       <p class="leading-relaxed" style="color: #2d5a3d;">Năm 2027 ở đây không chỉ là một mốc thời gian cụ thể, mà còn là một năm để sống chậm lại, nơi mỗi tháng đều có một câu chuyện riêng, một "mùa riêng", giống như cách Marcovaldo cảm nhận thành phố qua từng thời điểm trong năm.</p>
+      </div>
+     </div>
+     <div class="rounded-2xl overflow-hidden" style="background: linear-gradient(145deg, #fff, #f8faf6); box-shadow: 0 10px 40px rgba(74, 103, 65, 0.1);">
+      <div class="p-6" style="background: linear-gradient(135deg, #6b8f5e, #4a6741);">
+       <h3 class="font-display text-2xl font-bold text-white text-center">Cấu trúc 12 tháng</h3>
+      </div>
+      <div class="p-8">
+       <div class="grid md:grid-cols-4 gap-4">
+        <div class="p-4 rounded-lg text-center" style="background: linear-gradient(145deg, #f0fdf4, #dcfce7);">
+         <p class="font-medium mb-2" style="color: #166534;">🌸 Xuân</p>
+         <p class="text-sm" style="color: #4a5568;">Tháng 1-3</p>
+         <p class="text-xs mt-2" style="color: #6b8f5e;">5 truyện</p>
+        </div>
+        <div class="p-4 rounded-lg text-center" style="background: linear-gradient(145deg, #fefce8, #fef9c3);">
+         <p class="font-medium mb-2" style="color: #854d0e;">☀️ Hè</p>
+         <p class="text-sm" style="color: #4a5568;">Tháng 4-6</p>
+         <p class="text-xs mt-2" style="color: #6b8f5e;">5 truyện</p>
+        </div>
+        <div class="p-4 rounded-lg text-center" style="background: linear-gradient(145deg, #fff7ed, #fed7aa);">
+         <p class="font-medium mb-2" style="color: #9a3412;">🍂 Thu</p>
+         <p class="text-sm" style="color: #4a5568;">Tháng 7-9</p>
+         <p class="text-xs mt-2" style="color: #6b8f5e;">5 truyện</p>
+        </div>
+        <div class="p-4 rounded-lg text-center" style="background: linear-gradient(145deg, #f0f9ff, #e0f2fe);">
+         <p class="font-medium mb-2" style="color: #0c4a6e;">❄️ Đông</p>
+         <p class="text-sm" style="color: #4a5568;">Tháng 10-12</p>
+         <p class="text-xs mt-2" style="color: #6b8f5e;">5 truyện</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div><!-- DESIGN PAGE -->
+   <div id="page-design" class="page">
+     <div class="text-center mb-10">
+      <h2 class="font-display text-4xl font-bold mb-4" style="color: #3d5a36;">Thiết Kế &amp; Sản Phẩm</h2>
+      <p class="text-lg max-w-2xl mx-auto" style="color: #6b8f5e;">Triết lý thiết kế và quy cách sản phẩm chi tiết</p>
+      <div class="w-24 h-1 mx-auto mt-4 rounded-full" style="background: linear-gradient(90deg, #6b8f5e, #a8c99b);"></div>
+     </div><!-- PHẦN 1: TRIẾT LÝ THIẾT KẾ -->
+     <div class="rounded-2xl overflow-hidden mb-10" style="background: linear-gradient(145deg, #fff, #f0f7ed); box-shadow: 0 10px 40px rgba(74, 103, 65, 0.1);">
+      <div class="p-6" style="background: linear-gradient(135deg, #6b8f5e, #4a6741);">
+       <h3 class="font-display text-2xl font-bold text-white">💡 Triết Lý Thiết Kế</h3>
+      </div>
+      <div class="p-8">
+       <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-xl" style="background: linear-gradient(145deg, #f0fdf4, #e8f5e9);">
+         <div class="text-3xl mb-4">
+          📖
+         </div>
+         <h4 class="font-display text-lg font-semibold mb-3" style="color: #3d5a36;">Chủ Đề</h4>
+         <p class="text-sm leading-relaxed" style="color: #4a5568;">Lấy cảm hứng từ tác phẩm văn học kinh điển <span style="font-weight: 600; color: #3d5a36;">Marcovaldo</span> của nhà văn Italo Calvino</p>
+        </div>
+        <div class="p-6 rounded-xl" style="background: linear-gradient(145deg, #fef9c3, #fef3c7);">
+         <div class="text-3xl mb-4">
+          🎨
+         </div>
+         <h4 class="font-display text-lg font-semibold mb-3" style="color: #854d0e;">Phong Cách</h4>
+         <p class="text-sm leading-relaxed" style="color: #4a5568;">Nghệ thuật vẽ tay (hand-drawn) mang hơi hướng hoài cổ, mộc mạc và giàu cảm xúc</p>
+        </div>
+        <div class="p-6 rounded-xl" style="background: linear-gradient(145deg, #fed7aa, #feddaa);">
+         <div class="text-3xl mb-4">
+          🌍
+         </div>
+         <h4 class="font-display text-lg font-semibold mb-3" style="color: #9a3412;">Nội Dung</h4>
+         <p class="text-sm leading-relaxed" style="color: #4a5568;">12 bức tranh vẽ tay khắc họa hành trình tìm kiếm thiên nhiên qua 4 mùa</p>
+        </div>
+       </div>
+      </div>
+     </div><!-- PHẦN 2: QUY CÁCH SẢN PHẨM -->
+     <div class="mb-10">
+      <h3 class="font-display text-2xl font-bold mb-6 text-center" style="color: #3d5a36;">📋 Quy Cách Sản Phẩm</h3>
+      <div class="grid md:grid-cols-2 gap-6">
+       <!-- Lịch treo tường -->
+       <div class="rounded-xl overflow-hidden" style="background: #fff; box-shadow: 0 10px 40px rgba(74, 103, 65, 0.1);">
+        <div class="p-6" style="background: linear-gradient(135deg, #4ade80, #22c55e);">
+         <div class="flex items-center gap-3">
+          <span class="text-3xl">📅</span>
+          <h4 class="font-display text-2xl font-bold text-white">Lịch Treo Tường</h4>
+         </div>
+        </div>
+        <div class="p-8 space-y-6">
+         <div class="pb-6 border-b" style="border-color: #e5e7eb;">
+          <p class="text-sm font-medium mb-3" style="color: #6b8f5e;">📏 KÍCH THƯỚC</p>
+          <p class="text-lg font-semibold" style="color: #3d5a36;">32 × 47 cm</p>
+          <p class="text-sm mt-2" style="color: #718096;">Khổ lớn, tôn vinh chi tiết tranh vẽ</p>
+         </div>
+         <div class="pb-6 border-b" style="border-color: #e5e7eb;">
+          <p class="text-sm font-medium mb-3" style="color: #6b8f5e;">📄 CHẤT LIỆU</p>
+          <p class="text-lg font-semibold" style="color: #3d5a36;">Giấy Couche Cao Cấp</p>
+          <p class="text-sm mt-2" style="color: #718096;">Định lượng dày, bắt màu in sắc nét</p>
+         </div>
+         <div>
+          <p class="text-sm font-medium mb-3" style="color: #6b8f5e;">⚙️ GIA CÔNG</p>
+          <div class="space-y-2">
+           <div class="flex items-center gap-2"><span style="color: #22c55e;">✓</span>
+            <p class="text-sm" style="color: #4a5568;">Đóng lò xo chắc chắn</p>
+           </div>
+           <div class="flex items-center gap-2"><span style="color: #22c55e;">✓</span>
+            <p class="text-sm" style="color: #4a5568;">Dễ dàng lật mở</p>
+           </div>
+           <div class="flex items-center gap-2"><span style="color: #22c55e;">✓</span>
+            <p class="text-sm" style="color: #4a5568;">Lót bìa bảo vệ tranh</p>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div><!-- Lịch để bàn -->
+       <div class="rounded-xl overflow-hidden" style="background: #fff; box-shadow: 0 10px 40px rgba(74, 103, 65, 0.1);">
+        <div class="p-6" style="background: linear-gradient(135deg, #38bdf8, #0ea5e9);">
+         <div class="flex items-center gap-3">
+          <span class="text-3xl">🖼️</span>
+          <h4 class="font-display text-2xl font-bold text-white">Lịch Để Bàn</h4>
+         </div>
+        </div>
+        <div class="p-8 space-y-6">
+         <div class="pb-6 border-b" style="border-color: #e5e7eb;">
+          <p class="text-sm font-medium mb-3" style="color: #0ea5e9;">📏 KÍCH THƯỚC</p>
+          <p class="text-lg font-semibold" style="color: #3d5a36;">15 × 22 cm</p>
+          <p class="text-sm mt-2" style="color: #718096;">Nhỏ gọn, phù hợp trang trí góc làm việc</p>
+         </div>
+         <div class="pb-6 border-b" style="border-color: #e5e7eb;">
+          <p class="text-sm font-medium mb-3" style="color: #0ea5e9;">📄 CẤU TRÚC</p>
+          <div class="space-y-2">
+           <div class="flex items-center gap-2"><span style="color: #0ea5e9;">•</span>
+            <p class="text-sm" style="color: #4a5568;">Đế chữ A bằng giấy bồi cứng cáp</p>
+           </div>
+           <div class="flex items-center gap-2"><span style="color: #0ea5e9;">•</span>
+            <p class="text-sm" style="color: #4a5568;">Tạo thế đứng vững chãi</p>
+           </div>
+          </div>
+         </div>
+         <div>
+          <p class="text-sm font-medium mb-3" style="color: #0ea5e9;">✨ TIỆN ÍCH ĐẶC BIỆT</p>
+          <div class="space-y-2">
+           <div class="flex items-center gap-2"><span style="color: #0ea5e9;">★</span>
+            <p class="text-sm" style="color: #4a5568;">Trang riêng biệt dành cho <span style="font-weight: 600;">Ghi Chú</span></p>
+           </div>
+           <div class="flex items-center gap-2"><span style="color: #0ea5e9;">★</span>
+            <p class="text-sm" style="color: #4a5568;">Quản lý công việc và lịch trình cá nhân</p>
+           </div>
+           <div class="flex items-center gap-2"><span style="color: #0ea5e9;">★</span>
+            <p class="text-sm" style="color: #4a5568;">Đóng lò xo thẩm mỹ</p>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- PHẦN 3: ĐẶC ĐIỂM NỔI BẬT -->
+     <div class="rounded-2xl overflow-hidden mb-10" style="background: linear-gradient(145deg, #fff7ed, #fed7aa); box-shadow: 0 10px 40px rgba(249, 115, 22, 0.1);">
+      <div class="p-6" style="background: linear-gradient(135deg, #fb923c, #f97316);">
+       <h3 class="font-display text-2xl font-bold text-white">✨ Đặc Điểm Nổi Bật</h3>
+      </div>
+      <div class="p-8">
+       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-4 rounded-lg" style="background: rgba(255,255,255,0.6);">
+         <p class="text-3xl mb-2">📚</p>
+         <h5 class="font-semibold mb-2" style="color: #3d5a36;">Văn Học + Hội Họa</h5>
+         <p class="text-sm" style="color: #4a5568;">Sự kết hợp hoàn hảo giữa hai ngành nghệ thuật</p>
+        </div>
+        <div class="p-4 rounded-lg" style="background: rgba(255,255,255,0.6);">
+         <p class="text-3xl mb-2">🎨</p>
+         <h5 class="font-semibold mb-2" style="color: #3d5a36;">Giấy In Chuyên Dụng</h5>
+         <p class="text-sm" style="color: #4a5568;">Bắt màu sắc nét, giữ nguyên nét cọ</p>
+        </div>
+        <div class="p-4 rounded-lg" style="background: rgba(255,255,255,0.6);">
+         <p class="text-3xl mb-2">✍️</p>
+         <h5 class="font-semibold mb-2" style="color: #3d5a36;">Hand-Drawn Art</h5>
+         <p class="text-sm" style="color: #4a5568;">Vẽ tay mộc mạc, giàu cảm xúc</p>
+        </div>
+        <div class="p-4 rounded-lg" style="background: rgba(255,255,255,0.6);">
+         <p class="text-3xl mb-2">🏠</p>
+         <h5 class="font-semibold mb-2" style="color: #3d5a36;">Tác Phẩm Trang Trí</h5>
+         <p class="text-sm" style="color: #4a5568;">Không chỉ xem ngày, còn là tranh trang trí</p>
+        </div>
+       </div>
+      </div>
+     </div><!-- PHẦN 5: CẤU TRÚC MỖI THÁNG -->
+     <div class="rounded-2xl overflow-hidden" style="background: #fff; box-shadow: 0 10px 40px rgba(74, 103, 65, 0.1);">
+      <div class="p-6" style="background: linear-gradient(135deg, #6b8f5e, #4a6741);">
+       <h3 class="font-display text-2xl font-bold text-white">📐 Cấu Trúc Mỗi Trang Lịch</h3>
+      </div>
+      <div class="p-8">
+       <div class="grid md:grid-cols-2 gap-8">
+        <!-- Phía trái: Hình ảnh layout -->
+        <div class="flex items-center justify-center">
+         <div class="w-full border-2 rounded-lg" style="border-color: #d4e4cf; aspect-ratio: 3/4;">
+          <div class="h-1/5 flex items-center justify-center" style="background: #e8f0e5; border-bottom: 2px dashed #d4e4cf;">
+           <p class="text-xs font-medium" style="color: #6b8f5e;">Tên Tháng</p>
+          </div>
+          <div class="h-2/5 flex items-center justify-center" style="background: #f8faf6; border-bottom: 2px dashed #d4e4cf;">
+           <p class="text-sm font-medium" style="color: #b8d4ae;">🎨 Minh Họa</p>
+          </div>
+          <div class="h-1/6 flex items-center justify-center" style="background: #faf9f7; border-bottom: 2px dashed #d4e4cf;">
+           <p class="text-xs italic" style="color: #6b8f5e;">"Trích dẫn"</p>
+          </div>
+          <div class="h-1/4 p-2 grid grid-cols-7 gap-1" style="background: #e8f0e5;">
+           <div class="rounded text-xs" style="background: #d4e4cf; color: #3d5a36; display: flex; align-items: center; justify-content: center;">
+            1
+           </div>
+           <div class="rounded text-xs" style="background: #f8faf6; color: #3d5a36; display: flex; align-items: center; justify-content: center;">
+            2
+           </div>
+           <div class="rounded text-xs" style="background: #f8faf6; color: #3d5a36; display: flex; align-items: center; justify-content: center;">
+            3
+           </div>
+           <div class="rounded text-xs" style="background: #f8faf6; color: #3d5a36; display: flex; align-items: center; justify-content: center;">
+            4
+           </div>
+           <div class="rounded text-xs" style="background: #f8faf6; color: #3d5a36; display: flex; align-items: center; justify-content: center;">
+            5
+           </div>
+           <div class="rounded text-xs" style="background: #f8faf6; color: #3d5a36; display: flex; align-items: center; justify-content: center;">
+            6
+           </div>
+           <div class="rounded text-xs" style="background: #d4e4cf; color: #3d5a36; display: flex; align-items: center; justify-content: center;">
+            7
+           </div>
+          </div>
+         </div>
+        </div><!-- Phía phải: Chi tiết thành phần -->
+        <div class="space-y-4">
+         <div class="p-4 rounded-lg" style="background: linear-gradient(145deg, #f0fdf4, #e8f5e9); border-left: 4px solid #4ade80;">
+          <p class="text-sm font-semibold mb-1" style="color: #166534;">📌 HEADER (10%)</p>
+          <p class="text-sm" style="color: #4a5568;">Tên tháng, năm, biểu tượng mùa tương ứng</p>
+         </div>
+         <div class="p-4 rounded-lg" style="background: linear-gradient(145deg, #fef9c3, #fef3c7); border-left: 4px solid #eab308;">
+          <p class="text-sm font-semibold mb-1" style="color: #854d0e;">🎨 MINH HỌA (40%)</p>
+          <p class="text-sm" style="color: #4a5568;">Bức tranh vẽ tay line art thể hiện nội dung truyện</p>
+         </div>
+         <div class="p-4 rounded-lg" style="background: linear-gradient(145deg, #fff7ed, #fed7aa); border-left: 4px solid #f97316;">
+          <p class="text-sm font-semibold mb-1" style="color: #9a3412;">💬 TRÍCH DẪN (15%)</p>
+          <p class="text-sm" style="color: #4a5568;">Câu văn đẹp từ truyện, in nghiêng, font Source Serif</p>
+         </div>
+         <div class="p-4 rounded-lg" style="background: linear-gradient(145deg, #f0f9ff, #e0f2fe); border-left: 4px solid #0ea5e9;">
+          <p class="text-sm font-semibold mb-1" style="color: #0c4a6e;">📅 LƯỚI NGÀY (35%)</p>
+          <p class="text-sm" style="color: #4a5568;">Grid 7 cột × 5-6 hàng, highlight ngày lễ</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <!-- VALUES PAGE -->
+    <div id="page-values" class="page">
+     <div class="text-center mb-10">
+      <h2 class="font-display text-4xl font-bold mb-4" style="color: #3d5a36;">Giá Trị Cốt Lõi</h2>
+      <p class="text-lg max-w-2xl mx-auto" style="color: #6b8f5e;">Những thông điệp sâu sắc mà dự án muốn truyền tải</p>
+     </div>
+     <div class="grid md:grid-cols-2 gap-6 mb-10">
+      <div class="rounded-xl p-8 card-hover" style="background: linear-gradient(145deg, #fff, #f0f7ed); box-shadow: 0 10px 40px rgba(74, 103, 65, 0.1);">
+       <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background: linear-gradient(135deg, #6b8f5e, #4a6741);">
+        🌿
+       </div>
+       <h3 class="font-display text-2xl font-semibold mb-4" style="color: #3d5a36;">Kết nối con người với thiên nhiên</h3>
+       <p class="leading-relaxed" style="color: #4a5568;">Qua góc nhìn của Marcovaldo, chúng tôi muốn nhắc nhở mọi người về vẻ đẹp của thiên nhiên vẫn còn hiện diện xung quanh, ngay cả trong môi trường đô thị bận rộn nhất.</p>
+      </div>
+      <div class="rounded-xl p-8 card-hover" style="background: linear-gradient(145deg, #fff, #f0f7ed); box-shadow: 0 10px 40px rgba(74, 103, 65, 0.1);">
+       <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background: linear-gradient(135deg, #6b8f5e, #4a6741);">
+        📚
+       </div>
+       <h3 class="font-display text-2xl font-semibold mb-4" style="color: #3d5a36;">Lan tỏa tình yêu văn học</h3>
+       <p class="leading-relaxed" style="color: #4a5568;">Đưa văn học kinh điển đến gần hơn với đời sống thường nhật, biến những tác phẩm vĩ đại thành một phần trong cuộc sống hàng ngày của mỗi người.</p>
+      </div>
+      <div class="rounded-xl p-8 card-hover" style="background: linear-gradient(145deg, #fff, #f0f7ed); box-shadow: 0 10px 40px rgba(74, 103, 65, 0.1);">
+       <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background: linear-gradient(135deg, #6b8f5e, #4a6741);">
+        🎨
+       </div>
+       <h3 class="font-display text-2xl font-semibold mb-4" style="color: #3d5a36;">Tôn vinh nghệ thuật thị giác</h3>
+       <p class="leading-relaxed" style="color: #4a5568;">Kết hợp văn chương và hội họa, tạo nên sản phẩm có giá trị thẩm mỹ cao, góp phần nâng cao văn hóa đọc và thưởng thức nghệ thuật.</p>
+      </div>
+      <div class="rounded-xl p-8 card-hover" style="background: linear-gradient(145deg, #fff, #f0f7ed); box-shadow: 0 10px 40px rgba(74, 103, 65, 0.1);">
+       <div class="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl mb-6" style="background: linear-gradient(135deg, #6b8f5e, #4a6741);">
+        💚
+       </div>
+       <h3 class="font-display text-2xl font-semibold mb-4" style="color: #3d5a36;">Ý thức bảo vệ môi trường</h3>
+       <p class="leading-relaxed" style="color: #4a5568;">Thông qua những câu chuyện về Marcovaldo, khơi gợi ý thức về tầm quan trọng của việc bảo vệ không gian xanh và môi trường sống.</p>
+      </div>
+     </div>
+     <div class="rounded-2xl p-8 text-center" style="background: linear-gradient(135deg, #6b8f5e, #4a6741);">
+      <h3 class="font-display text-2xl font-bold text-white mb-4">Thông điệp chính</h3>
+      <p class="text-lg max-w-3xl mx-auto leading-relaxed" style="color: rgba(255,255,255,0.95);">"Trong nhịp sống hối hả của thành phố, hãy dừng lại một chút để cảm nhận vẻ đẹp của những điều giản dị xung quanh - như Marcovaldo đã làm."</p>
+     </div>
+    </div><!-- SCRIPT PAGE -->
+    <div id="page-script" class="page">
+     <div class="text-center mb-12">
+      <h2 class="font-display text-4xl font-bold mb-4" style="color: #3d5a36;">Kịch Bản Ra Mắt</h2>
+      <p class="text-xl italic font-display mb-2" style="color: #6b8f5e;">"Lối Về Sinh Thái"</p>
+      <p class="text-sm max-w-2xl mx-auto" style="color: #718096;">Buổi ra mắt bộ lịch năm 2027 "Lối về sinh thái"</p>
+      <div class="w-24 h-1 mx-auto mt-4 rounded-full" style="background: linear-gradient(90deg, #6b8f5e, #a8c99b);"></div>
+     </div><!-- PHẦN 1: MỞ ĐẦU -->
+     <div class="mb-10">
+      <div class="flex items-center gap-3 mb-6">
+       <div class="w-10 h-10 rounded-full flex items-center justify-center text-lg font-display font-bold text-white" style="background: linear-gradient(135deg, #6b8f5e, #4a6741);">
+        1
+       </div>
+       <h3 class="font-display text-2xl font-bold" style="color: #3d5a36;">Mở Đầu &amp; Chào Mừng</h3>
+      </div>
+      <div class="rounded-xl p-8" style="background: linear-gradient(145deg, #fff, #f8faf6); box-shadow: 0 4px 20px rgba(74, 103, 65, 0.08);">
+       <p class="leading-relaxed mb-4" style="color: #4a5568;">Kính thưa quý thầy cô, kính thưa toàn thể các bạn học sinh thân mến!</p>
+       <p class="leading-relaxed mb-4" style="color: #4a5568;">Lời đầu tiên, thay mặt nhóm thực hiện dự án, chúng em xin gửi đến quý thầy cô và các bạn lời chào trân trọng nhất. Hôm nay, chúng em vinh dự được đứng tại đây để chia sẻ về hành trình mà cả nhóm đã dày công ấp ủ — buổi ra mắt bộ lịch năm 2027: <span style="font-weight: 600; color: #3d5a36;">"Lối về sinh thái"</span>.</p>
+       <div class="divider my-6"></div>
+       <p class="leading-relaxed mb-4" style="color: #4a5568;">Trong nhịp sống hiện đại hôm nay, vấn đề sinh thái - môi trường ngày càng nhận được sự quan tâm sâu sắc của xã hội. Những lời kêu gọi bảo vệ môi trường, gìn giữ không gian sống, bảo tồn tự nhiên đang trở nên cấp thiết hơn bao giờ hết.</p>
+       <p class="leading-relaxed" style="color: #4a5568;">Trước bối cảnh ấy, văn chương phát huy vai trò của mình khi cất lên tiếng nói riêng – một tiếng nói lặng lẽ nhưng thấm sâu vào tâm tưởng – để kêu cứu thay thiên nhiên.</p>
+      </div>
+     </div><!-- PHẦN 2: TÁC GIẢ VÀ TÁC PHẨM -->
+     <div class="mb-10">
+      <div class="flex items-center gap-3 mb-6">
+       <div class="w-10 h-10 rounded-full flex items-center justify-center text-lg font-display font-bold text-white" style="background: linear-gradient(135deg, #6b8f5e, #4a6741);">
+        2
+       </div>
+       <h3 class="font-display text-2xl font-bold" style="color: #3d5a36;">Tác Giả &amp; Tác Phẩm</h3>
+      </div>
+      <div class="rounded-xl p-8" style="background: linear-gradient(145deg, #fff, #f8faf6); box-shadow: 0 4px 20px rgba(74, 103, 65, 0.08);">
+       <div class="mb-6 pb-6" style="border-bottom: 2px solid #e5e7eb;">
+        <p class="font-semibold mb-2" style="color: #3d5a36;">👨‍🖊️ Về Italo Calvino</p>
+        <p class="leading-relaxed" style="color: #4a5568;">Calvino là một trong những nhà văn lớn nhất của Ý thế kỷ XX. Ông nổi tiếng với lối viết nhẹ nhàng, giàu trí tưởng tượng, và thường đặt những suy tư tinh tế về đời sống hiện đại vào những câu chuyện tưởng chừng rất đỗi bình thường.</p>
+       </div>
+       <div class="mb-6 pb-6" style="border-bottom: 2px solid #e5e7eb;">
+        <p class="font-semibold mb-2" style="color: #3d5a36;">📖 Tác Phẩm: Marcovaldo - Các Mùa Trong Thành Phố</p>
+        <p class="leading-relaxed mb-3" style="color: #4a5568;">Tác phẩm kể về Marcovaldo, một công nhân lao động nghèo sống giữa lòng đô thị tấp nập, nhưng mang trong mình một tâm hồn mộng mơ, lãng mạn hiếm thấy.</p>
+        <p class="leading-relaxed" style="color: #4a5568;">Giữa khói bụi và nhịp sống xô bồ, Marcovaldo luôn kiên trì tìm kiếm những dấu vết nhỏ nhoi của thiên nhiên: một cây nấm bên vệ đường, một tia nắng chiếu vào ban công, hay một cơn gió mùa bất chợt ùa về. Những điều tưởng vô hình ấy lại là nguồn hạnh phúc và hy vọng của ông.</p>
+       </div>
+       <div>
+        <p class="font-semibold mb-2" style="color: #3d5a36;">🎨 Yếu Tố Chính: Bốn Mùa</p>
+        <p class="leading-relaxed" style="color: #4a5568;">Một yếu tố then chốt xuyên suốt tác phẩm là hình ảnh bốn mùa. Chúng không chỉ là bối cảnh thời gian mà còn phản chiếu cảm xúc và khát vọng của con người:</p>
+        <div class="mt-3 grid md:grid-cols-4 gap-3">
+         <div class="p-3 rounded-lg text-center" style="background: linear-gradient(145deg, #f0fdf4, #e8f5e9);">
+          <p style="color: #166534; font-size: 0.9rem;"><span style="font-weight: 600;">🌸 Xuân</span><br>
+           Hy Vọng</p>
+         </div>
+         <div class="p-3 rounded-lg text-center" style="background: linear-gradient(145deg, #fefce8, #fef9c3);">
+          <p style="color: #854d0e; font-size: 0.9rem;"><span style="font-weight: 600;">☀️ Hè</span><br>
+           Khát Khao</p>
+         </div>
+         <div class="p-3 rounded-lg text-center" style="background: linear-gradient(145deg, #fff7ed, #fed7aa);">
+          <p style="color: #9a3412; font-size: 0.9rem;"><span style="font-weight: 600;">🍂 Thu</span><br>
+           Trầm Lắng</p>
+         </div>
+         <div class="p-3 rounded-lg text-center" style="background: linear-gradient(145deg, #f0f9ff, #e0f2fe);">
+          <p style="color: #0c4a6e; font-size: 0.9rem;"><span style="font-weight: 600;">❄️ Đông</span><br>
+           Cô Đơn</p>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div><!-- PHẦN 3: Ý TƯỞNG BỘ LỊCH -->
+     <div class="mb-10">
+      <div class="flex items-center gap-3 mb-6">
+       <div class="w-10 h-10 rounded-full flex items-center justify-center text-lg font-display font-bold text-white" style="background: linear-gradient(135deg, #6b8f5e, #4a6741);">
+        3
+       </div>
+       <h3 class="font-display text-2xl font-bold" style="color: #3d5a36;">Ý Tưởng &amp; Cách Thực Hiện</h3>
+      </div>
+      <div class="rounded-xl p-8" style="background: linear-gradient(145deg, #fff, #f8faf6); box-shadow: 0 4px 20px rgba(74, 103, 65, 0.08);">
+       <div class="mb-6 pb-6" style="border-bottom: 2px solid #e5e7eb;">
+        <p class="font-semibold mb-3" style="color: #3d5a36;">💡 Khái Niệm</p>
+        <p class="leading-relaxed" style="color: #4a5568;">Lấy cảm hứng từ tác phẩm Marcovaldo, nhóm chúng em đã thiết kế bộ lịch năm 2027 như một <span style="font-weight: 600;">hành trình đi qua 12 tháng và 4 mùa</span> trong thành phố. Mỗi tháng không chỉ đánh dấu thời gian - mà còn ghi lại những khoảnh khắc rất nhỏ của thiên nhiên giữa đời sống đô thị, giống như cách Marcovaldo luôn phát hiện ra những điều tưởng chừng vô hình.</p>
+       </div>
+       <div>
+        <p class="font-semibold mb-3" style="color: #3d5a36;">✏️ Phương Pháp: Vẽ Tay</p>
+        <p class="leading-relaxed mb-3" style="color: #4a5568;">Toàn bộ hình ảnh trong bộ lịch đều được <span style="font-weight: 600;">vẽ tay</span> — được tạo nên bởi chính những đôi bàn tay của các thành viên trong nhóm, sau quá trình đọc và cảm nhận tác phẩm.</p>
+        <p class="leading-relaxed" style="color: #4a5568;">Giữa thời đại mà trí tuệ nhân tạo có thể tạo ra một bức tranh chỉ trong vài giây, chúng em vẫn chọn <span style="font-weight: 600;">tự mình ngồi xuống, tự mình phác nét và dặm màu</span>. Bởi vì chúng em muốn thổi hồn mình vào từng trang lịch - để mỗi bức vẽ không chỉ là hình ảnh, mà còn là khoảng lặng để người xem ngẫm suy, để thông điệp được chạm đến tận tâm.</p>
+       </div>
+      </div>
+     </div><!-- PHẦN 4: THÔNG ĐIỆP -->
+     <div class="mb-10">
+      <div class="flex items-center gap-3 mb-6">
+       <div class="w-10 h-10 rounded-full flex items-center justify-center text-lg font-display font-bold text-white" style="background: linear-gradient(135deg, #6b8f5e, #4a6741);">
+        4
+       </div>
+       <h3 class="font-display text-2xl font-bold" style="color: #3d5a36;">Thông Điệp &amp; Ý Nghĩa</h3>
+      </div>
+      <div class="rounded-xl p-8" style="background: linear-gradient(145deg, #fff, #f8faf6); box-shadow: 0 4px 20px rgba(74, 103, 65, 0.08);">
+       <div class="mb-6 pb-6" style="border-bottom: 2px solid #e5e7eb;">
+        <p class="font-semibold mb-3" style="color: #3d5a36;">🌿 Sống Chậm Lại</p>
+        <p class="leading-relaxed" style="color: #4a5568;">Bộ lịch không chỉ có giá trị sử dụng hằng ngày, mà còn là một lời nhắc để chúng ta <span style="font-weight: 600;">biết sống chậm lại</span> và quan sát thế giới xung quanh.</p>
+        <p class="leading-relaxed mt-2" style="color: #4a5568;">Giữa nhịp sống vội vã của một đô thị như Sài Gòn, thiên nhiên vẫn đang hiện diện - đôi khi rất khẽ khàng: <span style="font-style: italic;">một hàng cây ven đường, ánh nắng đậu trên ban công buổi sáng, hay một cơn gió chiều bất chợt ùa vào.</span> Bộ lịch là lời mời gọi chúng ta nhìn thấy và trân trọng những điều giản dị ấy.</p>
+       </div>
+       <div class="mb-6 pb-6" style="border-bottom: 2px solid #e5e7eb;">
+        <p class="font-semibold mb-3" style="color: #3d5a36;">♻️ Bảo Vệ Môi Trường Từ Những Việc Nhỏ</p>
+        <p class="leading-relaxed" style="color: #4a5568;">Thông qua bộ lịch, chúng em muốn gửi gắm thông điệp: <span style="font-weight: 600;">bảo vệ môi trường bắt đầu từ những hành động nhỏ nhất.</span></p>
+        <p class="leading-relaxed mt-2" style="color: #4a5568;">Khi biết gìn giữ những điều nhỏ bé, chúng ta đang cùng nhau giữ lại những "mùa riêng" của thiên nhiên trong lòng thành phố. Mỗi lần lật qua một trang lịch, là một lần khát vọng bảo tồn thiên nhiên được tiếp nối và truyền trao.</p>
+       </div>
+       <div>
+        <p class="font-semibold mb-3" style="color: #3d5a36;">📚 Kết Nối Văn Học Với Đời Sống</p>
+        <p class="leading-relaxed" style="color: #4a5568;">Qua sự kết hợp giữa văn chương kinh điển và nghệ thuật thị giác, chúng em hy vọng mang văn học đến gần hơn với cuộc sống hàng ngày của mọi người, làm cho những tác phẩm vĩ đại trở thành một phần tự nhiên trong thực tế.</p>
+       </div>
+      </div>
+     </div>
+     <div class="mb-10">
+      <div class="flex items-center gap-3 mb-6">
+       <div class="w-10 h-10 rounded-full flex items-center justify-center text-lg font-display font-bold text-white" style="background: linear-gradient(135deg, #6b8f5e, #4a6741);">
+        5
+       </div>
+       <h3 class="font-display text-2xl font-bold" style="color: #3d5a36;">Hoạt Động &amp; Kết Thúc</h3>
+      </div>
+      <div class="rounded-xl p-8" style="background: linear-gradient(145deg, #fff, #f8faf6); box-shadow: 0 4px 20px rgba(74, 103, 65, 0.08);">
+       <p class="leading-relaxed mb-4" style="color: #4a5568;">Để thông điệp ấy không chỉ dừng lại ở lời nói, chúng em xin trân trọng mời quý thầy cô và các bạn cùng tham gia vào một <span style="font-weight: 600;">hoạt động trải nghiệm</span> — như một cách cùng nhau chạm tay vào thiên nhiên, dù chỉ trong khoảnh khắc hôm nay.</p>
+       <div class="divider my-6"></div>
+       <p class="leading-relaxed mb-4" style="color: #4a5568;">Bộ lịch "Lối về sinh thái" là hành trình của chúng em - từ trang sách đến từng nét vẽ - để mang bốn mùa đến gần hơn với cuộc sống mỗi ngày.</p>
+       <p class="leading-relaxed" style="color: #4a5568;">Mong rằng khi lật từng trang lịch, chúng ta không chỉ thấy thời gian trôi qua — mà còn được nhắc nhớ để <span style="font-weight: 600;">dừng lại, ngước nhìn và trân trọng thiên nhiên</span> đang thầm lặng tồn tại bên cạnh mình.</p>
+      </div>
+     </div><!-- SUMMARY BOX -->
+     <div class="rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, #6b8f5e, #4a6741); box-shadow: 0 10px 40px rgba(74, 103, 65, 0.15);">
+      <div class="p-8 text-center">
+       <p class="text-sm font-medium mb-3 text-white opacity-90;">💚 THƯ THÁI CHÍNH</p>
+       <p class="font-display text-2xl font-bold text-white leading-relaxed">"Trong nhịp sống hối hả của thành phố, hãy dừng lại một chút để cảm nhận vẻ đẹp của những điều giản dị xung quanh."</p>
+      </div>
+     </div>
+    </div>
+   </main><!-- Footer -->
+   <footer class="mt-auto py-8" style="background: linear-gradient(135deg, #4a6741, #3d5a36);">
+    <div class="max-w-6xl mx-auto px-4">
+     <div class="text-center">
+      <p class="font-display text-xl text-white mb-2">🍃 Marcovaldo - Các Mùa Trong Thành Phố</p>
+      <p class="text-sm" style="color: rgba(255,255,255,0.7);">From 11A1 with love</p>
+      <div class="divider my-4" style="background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);"></div>
+      <p class="text-xs" style="color: rgba(255,255,255,0.5);">© 2025 - 2026 <br>Dự án được thực hiện bởi thành viên lớp 11A1 </p>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      site_title: '🍃 Marcovaldo',
+      hero_subtitle: 'Các mùa trong thành phố',
+      primary_color: '#4a6741',
+      secondary_color: '#6b8f5e',
+      background_color: '#f8faf6',
+      text_color: '#4a5568',
+      accent_color: '#d4e4cf',
+      font_family: 'Playfair Display',
+      font_size: 16
+    };
+
+    let config = { ...defaultConfig };
+
+    // Navigation
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const page = btn.dataset.page;
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(`page-${page}`).classList.add('active');
+        
+        document.querySelectorAll('.nav-btn').forEach(b => b.style.fontWeight = '500');
+        btn.style.fontWeight = '700';
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    // Set first nav as active
+    document.querySelector('.nav-btn').style.fontWeight = '700';
+
+    async function onConfigChange(cfg) {
+      config = { ...config, ...cfg };
+      
+      document.getElementById('site-title').textContent = config.site_title || defaultConfig.site_title;
+      document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      document.querySelectorAll('.font-display').forEach(el => {
+        el.style.fontFamily = `${fontFamily}, Georgia, serif`;
+      });
+      
+      const baseSize = config.font_size || defaultConfig.font_size;
+      document.body.style.fontSize = `${baseSize}px`;
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (cfg) => ({
+          recolorables: [
+            {
+              get: () => cfg.background_color || defaultConfig.background_color,
+              set: (v) => { cfg.background_color = v; window.elementSdk.setConfig({ background_color: v }); }
+            },
+            {
+              get: () => cfg.accent_color || defaultConfig.accent_color,
+              set: (v) => { cfg.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); }
+            },
+            {
+              get: () => cfg.text_color || defaultConfig.text_color,
+              set: (v) => { cfg.text_color = v; window.elementSdk.setConfig({ text_color: v }); }
+            },
+            {
+              get: () => cfg.primary_color || defaultConfig.primary_color,
+              set: (v) => { cfg.primary_color = v; window.elementSdk.setConfig({ primary_color: v }); }
+            },
+            {
+              get: () => cfg.secondary_color || defaultConfig.secondary_color,
+              set: (v) => { cfg.secondary_color = v; window.elementSdk.setConfig({ secondary_color: v }); }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => cfg.font_family || defaultConfig.font_family,
+            set: (v) => { cfg.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+          },
+          fontSizeable: {
+            get: () => cfg.font_size || defaultConfig.font_size,
+            set: (v) => { cfg.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+          }
+        }),
+        mapToEditPanelValues: (cfg) => new Map([
+          ['site_title', cfg.site_title || defaultConfig.site_title],
+          ['hero_subtitle', cfg.hero_subtitle || defaultConfig.hero_subtitle]
+        ])
+      });
+    }
+
+    onConfigChange(config);
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d49718ff122c7b2',t:'MTc3MjIxMzc3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+ <!-- SCRIPT GALLERY (ĐẶT TRƯỚC </body>) -->
+<script>
+
+const galleries = {
+
+calendar:[
+"bialich.jpg",
+"thang1.jpg",
+"thang2.jpg",
+"thang3.jpg",
+"thang4.jpg",
+"thang5.jpg",
+"thang6.jpg",
+"thang7.jpg",
+"thang8.jpg",
+"thang9.jpg",
+"thang10.jpg",
+"thang11.jpg",
+"thang12.jpg"
+],
+
+art:[
+"tranhve1.jpg",
+"tranhve2.jpg",
+"tranhve3.jpg",
+"tranhve4.jpg",
+"tranhve5.jpg",
+"tranhve6.jpg",
+"tranhve7.jpg",
+"tranhve8.jpg",
+"tranhve9.jpg",
+"tranhve10.jpg",
+"tranhve11.jpg",
+"tranhve12.jpg"
+]
+
+}
+
+const boxes=document.querySelectorAll(".gallery-box")
+const modal=document.getElementById("image-modal")
+const modalImage=document.getElementById("modal-image")
+
+const nextBtn=document.getElementById("next-image-btn")
+const prevBtn=document.getElementById("prev-image-btn")
+const closeBtn=document.getElementById("close-modal-btn")
+
+let currentGallery=[]
+let index=0
+
+boxes.forEach(box=>{
+
+box.onclick=()=>{
+
+const type=box.dataset.gallery
+
+currentGallery=galleries[type]
+
+index=0
+
+showImage()
+
+modal.classList.remove("opacity-0","pointer-events-none")
+
+}
+
+})
+
+function showImage(){
+
+modalImage.src=currentGallery[index]
+
+}
+
+nextBtn.onclick=()=>{
+
+index++
+
+if(index>=currentGallery.length) index=0
+
+showImage()
+
+}
+
+prevBtn.onclick=()=>{
+
+index--
+
+if(index<0) index=currentGallery.length-1
+
+showImage()
+
+}
+
+closeBtn.onclick=()=>{
+
+modal.classList.add("opacity-0","pointer-events-none")
+
+}
+
+</script>
+ </body>
+</html>
